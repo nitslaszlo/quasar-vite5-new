@@ -16,7 +16,7 @@ declare module "@vue/runtime-core" {
 // for each client)
 // const api = axios.create({ baseURL: "https://api.example.com" });
 const api = axios.create({
-  baseURL: "https://jedliksession.cyclic.app/",
+  baseURL: process.env.BASE_URL,
   // baseURL: "http://localhost:5000/",
   withCredentials: true,
 });
