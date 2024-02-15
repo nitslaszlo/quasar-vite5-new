@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { QTableProps } from "quasar";
-  import { usePostsStore } from "../store/postsStore";
-  import { useAppStore } from "../store/appStore";
+  import { usePostsStore } from "stores/postsStore";
+  import { useAppStore } from "stores/appStore";
   import { onMounted } from "vue";
   import { useI18n } from "vue-i18n";
 
