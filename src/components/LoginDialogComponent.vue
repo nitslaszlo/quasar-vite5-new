@@ -5,6 +5,7 @@ import { useUserStore } from "stores/userStore";
 import { useAppStore } from "stores/appStore";
 import LoginHelper from "components/LoginHelper";
 import ValidPassword from "./ValidPassword.vue";
+import { googleTokenLogin, CallbackTypes } from "vue3-google-login";
 
 interface IProps {
   email?: string;
@@ -71,11 +72,11 @@ function isValidPassword(result: string | boolean): void {
   r.password_ok = result;
 }
 
-// function loginRegisterGoogle() {
-//   googleTokenLogin().then((response: CallbackTypes.TokenPopupResponse) => {
-//     usersStore.loginRegisterWithGoogle(response.access_token);
-//   });
-// }
+function loginRegisterGoogle() {
+  googleTokenLogin().then((response: CallbackTypes.TokenPopupResponse) => {
+    usersStore.loginRegisterWithGoogle(response.access_token);
+  });
+}
 </script>
 
 <template>
@@ -155,7 +156,7 @@ function isValidPassword(result: string | boolean): void {
             type="button"
             @click="appStore.showLoginDialog = false"
           />
-          <!-- <q-btn
+          <q-btn
             v-if="!anyLoggedUser"
             class="shadow-10"
             color="blue"
@@ -163,7 +164,7 @@ function isValidPassword(result: string | boolean): void {
             label="Login/Register with Google"
             no-caps
             @click="loginRegisterGoogle()"
-          /> -->
+          />
         </q-card-actions>
       </q-form>
     </q-card>
