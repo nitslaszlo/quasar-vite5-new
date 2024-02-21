@@ -8,7 +8,7 @@
             "type": "msedge",
             "request": "launch",
             "name": "vuejs: edge",
-            "url": "http://localhost:8080",
+            "url": "http://localhost:9000",
             "webRoot": "${workspaceFolder}",
             "pauseForSourceMap": false,
             "sourceMapPathOverrides": {
@@ -22,7 +22,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "vuejs: chrome",
-            "url": "http://localhost:8080",
+            "url": "http://localhost:9000",
             "webRoot": "${workspaceFolder}",
             "pauseForSourceMap": false,
             "sourceMapPathOverrides": {
