@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { ref } from "vue";
-  const color = ref("yellow");
+import { ref } from "vue";
+const color = ref("yellow");
 </script>
 
 <template>
@@ -22,8 +22,8 @@
 </template>
 
 <style scoped>
-  .box {
-    background-color: v-bind(color);
-    border: 3px solid rgba(0, 0, 0, 0.15);
-  }
+.box {
+  background-color: v-bind(color);
+  border: 3px solid rgba(0, 0, 0, 0.15);
+}
 </style>

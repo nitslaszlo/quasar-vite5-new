@@ -38,10 +38,7 @@ const r = reactive<IReactiveData>({
 });
 
 watchEffect(
-  () =>
-    (r.email = usersStore.loggedUser
-      ? (usersStore.loggedUser.email as string)
-      : props.email)
+  () => (r.email = usersStore.loggedUser ? (usersStore.loggedUser.email as string) : props.email),
 );
 
 function isValidEmail(email: string): boolean | string {
@@ -80,12 +77,7 @@ function loginRegisterGoogle() {
 </script>
 
 <template>
-  <q-dialog
-    v-model="$props.showDialog"
-    persistent
-    transition-show="rotate"
-    @show="dialogShow()"
-  >
+  <q-dialog v-model="$props.showDialog" persistent transition-show="rotate" @show="dialogShow()">
     <q-card class="q-pa-xs" style="width: 100%">
       <q-form>
         <div class="row flex-center">
@@ -97,10 +89,7 @@ function loginRegisterGoogle() {
                 :disable="anyLoggedUser"
                 filled
                 label="E-mail address"
-                :rules="[
-                  (v) => (v != null && v != '') || 'Please fill in!',
-                  isValidEmail,
-                ]"
+                :rules="[(v: any) => (v != null && v != '') || 'Please fill in!', isValidEmail]"
                 type="text"
               />
             </q-card-section>
@@ -128,10 +117,7 @@ function loginRegisterGoogle() {
           <div class="col-xs-12 col-sm-6">
             <q-card-section v-if="!anyLoggedUser" class="no-padding">
               <div class="column">
-                <ValidPassword
-                  :password="r.password"
-                  @password_changed="isValidPassword"
-                />
+                <ValidPassword :password="r.password" @password_changed="isValidPassword" />
               </div>
             </q-card-section>
           </div>

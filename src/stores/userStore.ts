@@ -61,7 +61,10 @@ export const useUserStore = defineStore({
         })
         .catch(() => {
           this.loggedUser = null;
-          Notify.create({ message: "Error on Authentication", color: "negative" });
+          Notify.create({
+            message: "Error on Authentication",
+            color: "negative",
+          });
         })
         .finally(() => {
           Loading.hide();
@@ -86,7 +89,10 @@ export const useUserStore = defineStore({
         })
         .catch(() => {
           this.loggedUser = null;
-          Notify.create({ message: "Error on Authentication", color: "negative" });
+          Notify.create({
+            message: "Error on Authentication",
+            color: "negative",
+          });
         })
         .finally(() => {
           Loading.hide();

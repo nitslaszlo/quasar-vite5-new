@@ -115,7 +115,7 @@ export const usePostsStore = defineStore({
 
     async editPostById(): Promise<void> {
       if (this.data && this.data._id) {
-        const diff: {[k: string]: string} = {}; // only the changed fields are included
+        const diff: { [k: string]: string } = {}; // only the changed fields are included
         Object.keys(this.data).forEach((k, i) => {
           const newValue = Object.values(this.data)[i];
           const oldValue = Object.values(this.dataOld)[i];
@@ -188,7 +188,7 @@ export const usePostsStore = defineStore({
         .get(
           `posts/${(this.pagination.page - 1) * this.pagination.rowsPerPage!}/${this.pagination.rowsPerPage!}/${
             this.pagination.sortBy
-          }/${this.pagination!.descending ? -1 : 1}/${this.filter}`
+          }/${this.pagination!.descending ? -1 : 1}/${this.filter}`,
         )
         .then((res) => {
           if (res && res.data) {

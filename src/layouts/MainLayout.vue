@@ -4,7 +4,11 @@
       <q-header class="bg-primary text-white text-left" elevated reveal>
         <q-toolbar>
           <q-btn dense flat icon="mdi-menu" round @click="leftDrawer = !leftDrawer" />
-          <q-toolbar-title class="my-title" style="cursor: pointer" @click="$router.push({ path: '/' })">
+          <q-toolbar-title
+            class="my-title"
+            style="cursor: pointer"
+            @click="$router.push({ path: '/' })"
+          >
             <q-avatar>
               <img src="../assets/Jedlik_small.png" />
             </q-avatar>
@@ -16,7 +20,7 @@
             </q-avatar>
           </q-btn>
           <q-btn flat icon="mdi-comment-text-multiple" @click="toggleLanguage">
-            <q-badge color="red" floating :label="locale.slice(0,2)" />
+            <q-badge color="red" floating :label="locale.slice(0, 2)" />
           </q-btn>
           <q-btn flat icon="mdi-theme-light-dark" @click="$q.dark.toggle" />
           <q-btn dense flat icon="mdi-menu" round @click="leftDrawer = !leftDrawer" />
@@ -91,153 +95,153 @@
 </template>
 
 <script setup lang="ts">
-  import { useI18n } from "vue-i18n";
-  import { useUserStore } from "stores/userStore";
-  import { onMounted, ref } from "vue";
-  // import { Cookies } from "quasar";
+import { useI18n } from "vue-i18n";
+import { useUserStore } from "stores/userStore";
+import { onMounted, ref } from "vue";
+// import { Cookies } from "quasar";
 
-  const leftDrawer = ref<boolean>(true);
-  const usersStore = useUserStore();
+const leftDrawer = ref<boolean>(true);
+const usersStore = useUserStore();
 
-  let { t, locale } = useI18n();
+let { t, locale } = useI18n();
 
-  onMounted(() => {
-    usersStore.autoLogin();
-  });
+onMounted(() => {
+  usersStore.autoLogin();
+});
 
-  // Watch browser or browser page is close
-  window.addEventListener(
-    "beforeunload",
-    () => {
-      if (usersStore.loggedUser) {
-        usersStore.closeApp();
-      }
-    },
-    false
-  );
+// Watch browser or browser page is close
+window.addEventListener(
+  "beforeunload",
+  () => {
+    if (usersStore.loggedUser) {
+      usersStore.closeApp();
+    }
+  },
+  false,
+);
 
-  function menuItems() {
-    return [
-      {
-        icon: "mdi-home",
-        text: t("startPage"),
-        name: "startPage",
-        route: "/",
-        disabled: false,
-        separator: false,
-      },
-      {
-        icon: "mdi-soccer",
-        text: t("examples"),
-        name: "examples",
-        route: "/examples",
-        disabled: false,
-        separator: false,
-      },
-      {
-        icon: "mdi-grid",
-        text: t("gridDemo"),
-        name: "gridDemo",
-        route: "/grid",
-        disabled: false,
-        separator: false,
-      },
-      {
-        icon: "mdi-account",
-        text: t("account"),
-        name: "account",
-        route: "/account",
-        disabled: false,
-        separator: false,
-      },
-      {
-        icon: "mdi-information",
-        text: t("about"),
-        name: "about",
-        route: "/about",
-        disabled: false,
-        separator: false,
-      },
-      {
-        icon: "mdi-lifebuoy",
-        text: "Help",
-        name: "help",
-        route: "/help",
-        disabled: false,
-        separator: true,
-      },
-    ];
-  }
-
-  const links = ref([
+function menuItems() {
+  return [
     {
-      icon: "mdi-github",
-      text: "GitHub repo",
-      name: "",
-      link: "https://github.com/nitslaszlo/jedlik-vite-quasar-template-minimal-dialogs",
+      icon: "mdi-home",
+      text: t("startPage"),
+      name: "startPage",
+      route: "/",
       disabled: false,
       separator: false,
     },
     {
-      icon: "mdi-language-typescript",
-      text: "TypeScript",
-      name: "",
-      link: "https://www.typescriptlang.org/",
+      icon: "mdi-soccer",
+      text: t("examples"),
+      name: "examples",
+      route: "/examples",
       disabled: false,
       separator: false,
     },
     {
-      icon: "mdi-vuejs",
-      text: "Vue.js",
-      name: "",
-      link: "https://vuejs.org/",
+      icon: "mdi-grid",
+      text: t("gridDemo"),
+      name: "gridDemo",
+      route: "/grid",
       disabled: false,
       separator: false,
     },
     {
-      icon: "mdi-tire",
-      text: "Quasar",
-      name: "",
-      link: "https://quasar.dev/",
+      icon: "mdi-account",
+      text: t("account"),
+      name: "account",
+      route: "/account",
       disabled: false,
       separator: false,
     },
     {
-      icon: "mdi-fruit-pineapple",
-      text: "Pinia",
-      name: "",
-      link: "https://pinia.vuejs.org/introduction.html",
+      icon: "mdi-information",
+      text: t("about"),
+      name: "about",
+      route: "/about",
       disabled: false,
       separator: false,
     },
-  ]);
+    {
+      icon: "mdi-lifebuoy",
+      text: "Help",
+      name: "help",
+      route: "/help",
+      disabled: false,
+      separator: true,
+    },
+  ];
+}
 
-  function toggleLanguage() {
-    locale.value = locale.value == "hu-HU" ? "en-US" : "hu-HU";
-  }
+const links = ref([
+  {
+    icon: "mdi-github",
+    text: "GitHub repo",
+    name: "",
+    link: "https://github.com/nitslaszlo/jedlik-vite-quasar-template-minimal-dialogs",
+    disabled: false,
+    separator: false,
+  },
+  {
+    icon: "mdi-language-typescript",
+    text: "TypeScript",
+    name: "",
+    link: "https://www.typescriptlang.org/",
+    disabled: false,
+    separator: false,
+  },
+  {
+    icon: "mdi-vuejs",
+    text: "Vue.js",
+    name: "",
+    link: "https://vuejs.org/",
+    disabled: false,
+    separator: false,
+  },
+  {
+    icon: "mdi-tire",
+    text: "Quasar",
+    name: "",
+    link: "https://quasar.dev/",
+    disabled: false,
+    separator: false,
+  },
+  {
+    icon: "mdi-fruit-pineapple",
+    text: "Pinia",
+    name: "",
+    link: "https://pinia.vuejs.org/introduction.html",
+    disabled: false,
+    separator: false,
+  },
+]);
+
+function toggleLanguage() {
+  locale.value = locale.value == "hu-HU" ? "en-US" : "hu-HU";
+}
 </script>
 
 <style lang="scss">
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 0.5s ease;
-  }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
 
-  .fade-enter-from,
-  .fade-leave-to {
-    opacity: 0;
-  }
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 
-  .my-title {
-    font-size: 10px;
-    @media (min-width: 400px) {
-      font-size: calc(10px + 0.5vw);
-    }
-    @media (min-width: 800px) {
-      font-size: calc(14px + 0.5vw);
-    }
-    @media (min-width: 1200px) {
-      font-size: calc(18px + 0.5vw);
-    }
+.my-title {
+  font-size: 10px;
+  @media (min-width: 400px) {
+    font-size: calc(10px + 0.5vw);
   }
+  @media (min-width: 800px) {
+    font-size: calc(14px + 0.5vw);
+  }
+  @media (min-width: 1200px) {
+    font-size: calc(18px + 0.5vw);
+  }
+}
 </style>

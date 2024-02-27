@@ -1,13 +1,13 @@
 <script setup lang="ts">
-  import { computed } from "vue";
-  import { useUserStore } from "stores/userStore";
-  import { useAppStore } from "stores/appStore";
-  import LoginDialogComponent from "components/LoginDialogComponent.vue";
+import { computed } from "vue";
+import { useUserStore } from "stores/userStore";
+import { useAppStore } from "stores/appStore";
+import LoginDialogComponent from "components/LoginDialogComponent.vue";
 
-  const usersStore = useUserStore();
-  const appStore = useAppStore();
+const usersStore = useUserStore();
+const appStore = useAppStore();
 
-  const anyLoggedUser = computed(() => (usersStore.getLoggedUser ? true : false));
+const anyLoggedUser = computed(() => (usersStore.getLoggedUser ? true : false));
 </script>
 
 <template>
@@ -23,7 +23,11 @@
         no-caps
         @click="appStore.showLoginDialog = true"
       />
-      <LoginDialogComponent email="student001@jedlik.eu" password="student001" :show-dialog="appStore.showLoginDialog" />
+      <LoginDialogComponent
+        email="student001@jedlik.eu"
+        password="student001"
+        :show-dialog="appStore.showLoginDialog"
+      />
     </div>
   </q-page>
 </template>

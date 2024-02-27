@@ -1,13 +1,13 @@
 <script setup lang="ts">
-  import { ref, computed } from "vue";
-  const props = defineProps({
-    initial: {
-      type: Number,
-      required: true,
-    },
-  });
-  const count = ref(props.initial);
-  const doubledCount = computed(() => count.value * 2);
+import { ref, computed } from "vue";
+const props = defineProps({
+  initial: {
+    type: Number,
+    required: true,
+  },
+});
+const count = ref(props.initial);
+const doubledCount = computed(() => count.value * 2);
 </script>
 
 <template>
@@ -25,9 +25,9 @@
 </template>
 
 <style scoped>
-  h2,
-  h5 {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
+h2,
+h5 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 </style>

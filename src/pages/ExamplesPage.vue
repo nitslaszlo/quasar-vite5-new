@@ -1,84 +1,93 @@
 <script setup lang="ts">
-  import ColorChecker from "../components/ColorChecker.vue";
-  import CounterComponent from "components/CounterComponent.vue";
-  import HelloWorld from "../components/HelloWorld.vue";
-  import { reactive, computed, watchEffect } from "vue";
+import ColorChecker from "../components/ColorChecker.vue";
+import CounterComponent from "components/CounterComponent.vue";
+import HelloWorld from "../components/HelloWorld.vue";
+import { reactive, computed, watchEffect } from "vue";
 
-  interface IReactiveData {
-    felkialtojelDarab: number;
-    nev: string;
-    xek: string;
-    felkialtojelek: string;
-    napok: Array<string>;
-    inputNap: string;
-  }
+interface IReactiveData {
+  felkialtojelDarab: number;
+  nev: string;
+  xek: string;
+  felkialtojelek: string;
+  napok: Array<string>;
+  inputNap: string;
+}
 
-  const state = reactive<IReactiveData>({
-    felkialtojelDarab: 3,
-    nev: "Jedlik Ányos",
-    xek: "",
-    felkialtojelek: "!!!",
-    napok: ["hétfő", "kedd", "szerda"],
-    inputNap: "",
-  });
+const state = reactive<IReactiveData>({
+  felkialtojelDarab: 3,
+  nev: "Jedlik Ányos",
+  xek: "",
+  felkialtojelek: "!!!",
+  napok: ["hétfő", "kedd", "szerda"],
+  inputNap: "",
+});
 
-  setInterval(() => {
-    let wrongCharPos = -1;
-    for (let i = 0; i < state.xek.length; i++) {
-      if (state.xek[i].toLowerCase() !== "x") {
-        wrongCharPos = i;
-        break;
-      }
+setInterval(() => {
+  let wrongCharPos = -1;
+  for (let i = 0; i < state.xek.length; i++) {
+    if (state.xek[i].toLowerCase() !== "x") {
+      wrongCharPos = i;
+      break;
     }
-    if (wrongCharPos !== -1) {
-      if (state.xek.length <= 10) {
-        state.xek = state.xek.replace(state.xek[wrongCharPos], "X");
-      } else {
-        state.xek = state.xek.replace(state.xek[wrongCharPos], "");
-      }
+  }
+  if (wrongCharPos !== -1) {
+    if (state.xek.length <= 10) {
+      state.xek = state.xek.replace(state.xek[wrongCharPos], "X");
     } else {
-      if (state.xek.length < 10) {
-        state.xek += "X";
-      } else if (state.xek.length > 10) {
-        state.xek = state.xek.slice(0, -1);
-      }
+      state.xek = state.xek.replace(state.xek[wrongCharPos], "");
     }
-  }, 3000);
-
-  const iNap = computed(() => state.inputNap.toLowerCase());
-
-  watchEffect(() => (state.felkialtojelek = "!".repeat(state.felkialtojelDarab)));
-
-  function onClick(művelet: string) {
-    if (művelet === "+") {
-      state.felkialtojelDarab++;
-    } else if (művelet === "-") {
-      state.felkialtojelDarab--;
+  } else {
+    if (state.xek.length < 10) {
+      state.xek += "X";
+    } else if (state.xek.length > 10) {
+      state.xek = state.xek.slice(0, -1);
     }
   }
+}, 3000);
 
-  function napEllenorzese(): boolean {
-    const joNapok: string[] = ["", "hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap"];
-    return joNapok.includes(iNap.value);
-  }
+const iNap = computed(() => state.inputNap.toLowerCase());
 
-  function joNapHozzadni(nap: string) {
-    return iNap.value !== "" && napEllenorzese() && !state.napok.includes(nap);
-  }
+watchEffect(() => (state.felkialtojelek = "!".repeat(state.felkialtojelDarab)));
 
-  function hozzadNap(): void {
-    state.napok.push(iNap.value);
-    state.inputNap = "";
+function onClick(művelet: string) {
+  if (művelet === "+") {
+    state.felkialtojelDarab++;
+  } else if (művelet === "-") {
+    state.felkialtojelDarab--;
   }
+}
 
-  function joNapTorolni(nap: string): boolean {
-    return state.napok.includes(nap);
-  }
+function napEllenorzese(): boolean {
+  const joNapok: string[] = [
+    "",
+    "hétfő",
+    "kedd",
+    "szerda",
+    "csütörtök",
+    "péntek",
+    "szombat",
+    "vasárnap",
+  ];
+  return joNapok.includes(iNap.value);
+}
 
-  function torolNap(): void {
-    state.napok = state.napok.filter((i) => i !== iNap.value);
-    state.inputNap = "";
-  }
+function joNapHozzadni(nap: string) {
+  return iNap.value !== "" && napEllenorzese() && !state.napok.includes(nap);
+}
+
+function hozzadNap(): void {
+  state.napok.push(iNap.value);
+  state.inputNap = "";
+}
+
+function joNapTorolni(nap: string): boolean {
+  return state.napok.includes(nap);
+}
+
+function torolNap(): void {
+  state.napok = state.napok.filter((i) => i !== iNap.value);
+  state.inputNap = "";
+}
 </script>
 
 <template>
@@ -99,7 +108,7 @@
             hint="Up to 20 characters are allowed!"
             label="Type your name!"
             outlined
-            :rules="[(v:string) => v.length <= 20 || 'Max 20 characters!']"
+            :rules="[(v: string) => v.length <= 20 || 'Max 20 characters!']"
             type="text"
           />
           <q-input
@@ -109,7 +118,7 @@
             hint="Up to 10 'x' characters are allowed!"
             label="Max 10 eX!"
             outlined
-            :rules="[(v:string) => v.length <= 10 || 'Error: max 10 X!']"
+            :rules="[(v: string) => v.length <= 10 || 'Error: max 10 X!']"
             type="text"
           />
           <q-banner class="bg-positive shadow-6 q-my-md" rounded>

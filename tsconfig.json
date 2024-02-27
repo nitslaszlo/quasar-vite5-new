@@ -8,5 +8,5 @@
     "pinia-plugin-persist",
     "@intlify/unplugin-vue-i18n/messages",
     "vue3-google-login"
-  ],
+  ]
 }

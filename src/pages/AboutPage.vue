@@ -28,12 +28,12 @@
 </template>
 
 <style scoped>
-  h2 {
-    color: gray;
-    font-size: 2vw;
-    margin: auto;
-  }
-  a {
-    text-decoration: none;
-  }
+h2 {
+  color: gray;
+  font-size: 2vw;
+  margin: auto;
+}
+a {
+  text-decoration: none;
+}
 </style>
