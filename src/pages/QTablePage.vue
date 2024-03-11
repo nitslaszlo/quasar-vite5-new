@@ -102,7 +102,7 @@ function resetPostDialog() {
         :filter="postsStore.filter"
         :loading="postsStore.isLoading"
         :pagination-label="
-          (firstRowIndex, endRowIndex, totalRowsNumber) =>
+          (firstRowIndex: any, endRowIndex: any, totalRowsNumber: any) =>
             `${firstRowIndex}-${endRowIndex}/${totalRowsNumber}`
         "
         row-key="_id"
